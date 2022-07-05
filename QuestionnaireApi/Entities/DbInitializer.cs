@@ -1,4 +1,7 @@
-﻿namespace QuestionnaireApi.Entities
+﻿using Microsoft.Extensions.Hosting.Internal;
+using System.Text.Json;
+
+namespace QuestionnaireApi.Entities
 {
     public static class DbInitializer
     {
@@ -103,6 +106,15 @@
                 }
             };
             context.Forms.AddRange(forms);
+            context.SaveChanges();
+
+            var countryFile = Extensions.MapPath(@"Data\countries.json");
+            var fileContent = File.ReadAllText(countryFile);
+            var countries = JsonSerializer.Deserialize<List<Country>>(fileContent, new JsonSerializerOptions() 
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            context.Countries.AddRange(countries);
             context.SaveChanges();
         }
     }

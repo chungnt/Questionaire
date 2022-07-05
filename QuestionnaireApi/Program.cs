@@ -22,6 +22,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+AppDomain.CurrentDomain.SetData("ContentRootPath", app.Environment.ContentRootPath);
+AppDomain.CurrentDomain.SetData("WebRootPath", app.Environment.WebRootPath);
+
 app.CreateDbIfNotExists();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

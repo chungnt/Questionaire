@@ -6,9 +6,8 @@ using QuestionnaireApi.Services;
 
 namespace QuestionnaireApi
 {
-    public static class StartupExtensions
+    public static class Extensions
     {
-
         public static void CreateDbIfNotExists(this IHost host)
         {
             using (var scope = host.Services.CreateScope())
@@ -34,6 +33,12 @@ namespace QuestionnaireApi
         public static void AddMapperProfiles(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(AutoMapperProfiles));
+        }
+        public static string MapPath(string path)
+        {
+            return Path.Combine(
+                (string)AppDomain.CurrentDomain.GetData("ContentRootPath"),
+                path);
         }
     }
 }

@@ -14,12 +14,14 @@ namespace QuestionnaireApi.Entities
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionInfo> QuestionInfos { get; set; }
         public DbSet<QuestionInfoType> QuestionInfoTypes { get; set; }
+        public DbSet<Country> Countries { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Form>().ToTable("Form");
             modelBuilder.Entity<Question>().ToTable("Question");
             modelBuilder.Entity<QuestionInfo>().ToTable("QuestionInfo");
             modelBuilder.Entity<QuestionInfoType>().ToTable("QuestionInfoType");
+            modelBuilder.Entity<Country>().ToTable("Country");
         }
     }
 }
