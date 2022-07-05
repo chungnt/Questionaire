@@ -34,11 +34,6 @@ namespace QuestionnaireApi.Controllers
             var question = await _questionnaireService.GetQuestionById(questionId);
             return Ok(question);
         }
-        [HttpPost("form/{id}")]
-        public async Task<IActionResult> SubmitForm(int id)
-        {
-            return Ok();
-        }
         [HttpPost("form/{formId}/questions/{questionId}/answer")]
         public async Task<IActionResult> SubmitAnswer([FromBody] Answer answer, int formId, int questionId)
         {
