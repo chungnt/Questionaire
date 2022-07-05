@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "92b17dbd-498b-4e84-9bc7-0195e5672fa9",
+		"name": "Questionaire",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Form",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostUrl}}/api/Questionaire/form/1/questions/1",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"api",
+						"Questionaire",
+						"form",
+						"1",
+						"questions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Question",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostUrl}}/api/Questionaire/form/1",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"api",
+						"Questionaire",
+						"form",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Answer - Personal Information",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"questionId\": 1,\r\n\t\"answerInfos\": [\r\n\t\t{\r\n\t\t\t\"questionInfoId\": 1,\r\n\t\t\t\"answer\": \"Mr.\"\r\n\t\t},\r\n        {\r\n\t\t\t\"questionInfoId\": 2,\r\n\t\t\t\"answer\": \"First name\"\r\n\t\t},\r\n        {\r\n\t\t\t\"questionInfoId\": 3,\r\n\t\t\t\"answer\": \"Last name\"\r\n\t\t},\r\n        {\r\n\t\t\t\"questionInfoId\": 4,\r\n\t\t\t\"answer\": \"20/02/2020\"\r\n\t\t},\r\n        {\r\n\t\t\t\"questionInfoId\": 5,\r\n\t\t\t\"answer\": \"Vietnam\"\r\n\t\t}\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/api/Questionaire/form/1/questions/1/answer",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"api",
+						"Questionaire",
+						"form",
+						"1",
+						"questions",
+						"1",
+						"answer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Answer - Address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"questionId\": 1,\r\n\t\"answerInfos\": [\r\n\t\t{\r\n\t\t\t\"questionInfoId\": 6,\r\n\t\t\t\"answer\": \"Hanoi\"\r\n\t\t},\r\n        {\r\n\t\t\t\"questionInfoId\": 7,\r\n\t\t\t\"answer\": \"Vietnam\"\r\n\t\t}\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/api/Questionaire/form/1/questions/2/answer",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"api",
+						"Questionaire",
+						"form",
+						"1",
+						"questions",
+						"2",
+						"answer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Answer - Occupation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"questionId\": 1,\r\n\t\"answerInfos\": [\r\n\t\t{\r\n\t\t\t\"questionInfoId\": 8,\r\n\t\t\t\"answer\": \"Engineer\"\r\n\t\t},\r\n        {\r\n\t\t\t\"questionInfoId\": 9,\r\n\t\t\t\"answer\": \"Software Engineer\"\r\n\t\t},\r\n        {\r\n\t\t\t\"questionInfoId\": 10,\r\n\t\t\t\"answer\": \"Technology\"\r\n\t\t}\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/api/Questionaire/form/1/questions/3/answer",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"api",
+						"Questionaire",
+						"form",
+						"1",
+						"questions",
+						"3",
+						"answer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
