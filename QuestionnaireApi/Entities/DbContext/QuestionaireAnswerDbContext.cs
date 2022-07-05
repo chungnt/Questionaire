@@ -22,6 +22,12 @@ namespace QuestionnaireApi.Entities
         {
             get
             {
+                var collection = _database.GetCollection<Answer>("answers");
+                if (collection != null)
+                {
+                    return collection;
+                }
+                _database.CreateCollection("answers");
                 return _database.GetCollection<Answer>("answers");
             }
         }
