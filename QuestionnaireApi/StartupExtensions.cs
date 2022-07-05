@@ -25,10 +25,16 @@ namespace QuestionnaireApi
                 }
             }
         }
+        public static void AddOptions(this WebApplicationBuilder builder)
+        {
+            builder.Services.Configure<QuestionaireAnswerDbContextOptions>(builder.Configuration.GetSection("ConnectionStrings:Answer"));
+        }
         public static void AddDependencies(this IServiceCollection services)
         {
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
             services.AddScoped<IQuestionnaireService, QuestionnaireService>();
+            services.AddScoped<IQuestionaireAnswerRepository, QuestionaireAnswerRepository>();
+            services.AddScoped<IQuestionnaireAnswerService, QuestionnaireAnswerService>();
         }
         public static void AddMapperProfiles(this IServiceCollection services)
         {

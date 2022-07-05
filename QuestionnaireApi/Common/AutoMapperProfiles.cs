@@ -13,6 +13,8 @@ namespace QuestionnaireApi.Common
                 .ForMember(model => model.Type, entity => entity.MapFrom(x => x.Type.Name))
                 .ForMember(model => model.SelectOptions, entity
                     => entity.MapFrom(x => x.SelectOptions.Split('|', System.StringSplitOptions.None).ToArray()));
+            CreateMap<Entities.Answer, Models.Answer>().ReverseMap();
+            CreateMap<Entities.AnswerInfo, Models.AnswerInfo>().ReverseMap();
         }
     }
 }

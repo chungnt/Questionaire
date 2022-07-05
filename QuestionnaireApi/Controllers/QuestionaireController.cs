@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using QuestionnaireApi.Models;
 using QuestionnaireApi.Services;
 
 namespace QuestionnaireApi.Controllers
@@ -9,9 +11,13 @@ namespace QuestionnaireApi.Controllers
     public class QuestionaireController : ControllerBase
     {
         private readonly IQuestionnaireService _questionnaireService;
-        public QuestionaireController(IQuestionnaireService questionnaireService)
+        private readonly IQuestionnaireAnswerService _questionnaireAnswerService;
+        
+        public QuestionaireController(IQuestionnaireService questionnaireService, 
+            IQuestionnaireAnswerService questionnaireAnswerService)
         {
             _questionnaireService = questionnaireService;
+            _questionnaireAnswerService = questionnaireAnswerService;
         }
         [HttpGet("form/{id}")]
         public async Task<IActionResult> GetForm(int id)
@@ -33,9 +39,30 @@ namespace QuestionnaireApi.Controllers
         {
             return Ok();
         }
-        [HttpPost("form/{formId}/questions/{questionId}")]
-        public async Task<IActionResult> SubmitAnswer(int formId, int questionId, string answer)
+        [HttpPost("form/{formId}/questions/{questionId}/answer")]
+        public async Task<IActionResult> SubmitAnswer([FromBody] Answer answer, int formId, int questionId)
         {
+            answer.QuestionId = questionId;
+            string userId = string.Empty;
+            if (string.IsNullOrEmpty(answer.UserId))
+            {
+                if (Request.Cookies.ContainsKey("userId"))
+                {
+                    userId = Request.Cookies["userId"];
+                }
+                //generate random userId for anonymous user
+                string cookieValue = Guid.NewGuid().ToString();
+                Response.Cookies.Append("userId", cookieValue,
+                    new CookieOptions
+                    {
+                        Path = "/",
+                        Expires = DateTime.Now.AddDays(3)
+                    });
+                userId = cookieValue;
+
+                answer.UserId = userId;
+            }
+            await _questionnaireAnswerService.AddAnswer(answer);
             return Ok();
         }
     }

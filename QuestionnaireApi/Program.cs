@@ -1,20 +1,21 @@
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using QuestionnaireApi;
 using QuestionnaireApi.Entities;
 using QuestionnaireApi.Repositories;
 using QuestionnaireApi.Services;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+builder.AddOptions();
 builder.Services.AddDbContext<QuestionaireDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Questionaire")));
 builder.Services.AddMapperProfiles();
 builder.Services.AddDependencies();
-builder.Services.AddControllers().AddJsonOptions(options => 
-{ 
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

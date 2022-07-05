@@ -7,5 +7,6 @@ namespace QuestionnaireApi.Repositories
         public Task<Form?> GetFormById(int id);
         public Task<Question?> GetQuestionById(int id);
         public Task<QuestionInfo?> GetQuestionInfoById(int id);
+        public Task<IEnumerable<Country>?> GetCountries();
     }
 }

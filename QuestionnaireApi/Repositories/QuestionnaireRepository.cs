@@ -30,5 +30,9 @@ namespace QuestionnaireApi.Repositories
         {
             return await _questionaireDbContext.QuestionInfos.FindAsync(id);
         }
+        public async Task<IEnumerable<Country>?> GetCountries()
+        {
+            return await _questionaireDbContext.Countries.ToListAsync();
+        }
     }
 }

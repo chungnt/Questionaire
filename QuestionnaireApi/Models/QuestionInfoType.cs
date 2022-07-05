@@ -1,5 +1,6 @@
 ﻿namespace QuestionnaireApi.Models
 {
+    [Serializable]
     public class QuestionInfoType
     {
         public int Id { get; set; }

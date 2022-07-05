@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QuestionnaireApi.Models
 {
+    [Serializable]
     public class Form
     {
         public int Id { get; set; }
