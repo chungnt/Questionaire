@@ -15,6 +15,14 @@ namespace QuestionnaireApi.Common
                     => entity.MapFrom(x => x.SelectOptions.Split('|', System.StringSplitOptions.None).ToArray()));
             CreateMap<Entities.Answer, Models.Answer>().ReverseMap();
             CreateMap<Entities.AnswerInfo, Models.AnswerInfo>().ReverseMap();
+            CreateMap<Entities.FormState, Models.FormState>()
+                .ForMember(model => model.FormId, entity => entity.MapFrom(model => model.Form.Id))
+                .ForMember(model => model.UserId, entity => entity.MapFrom(model => model.User.UserId))
+                .ForMember(model => model.CurrentQuestionId, entity => entity.MapFrom(model => model.CurrentQuestion.Id))
+                .ForMember(model => model.FormStateTypeId, entity => entity.MapFrom(model => model.FormStateType.Id))
+                .ForMember(model => model.FormStateType, entity => entity.MapFrom(model => model.FormStateType.Name));
+            CreateMap<Entities.User, Models.User>().ReverseMap();
+            CreateMap<Entities.Country, Models.Country>().ReverseMap();
         }
     }
 }

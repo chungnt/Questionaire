@@ -21,6 +21,13 @@ namespace QuestionnaireApi.Entities
             };
             context.QuestionInfoTypes.AddRange(questionInfoTypes);
             context.SaveChanges();
+            var formStateTypes = new List<FormStateType>()
+            {
+                new FormStateType(){ Name = "completed" },
+                new FormStateType(){ Name = "incomplete" }
+            };
+            context.FormStateTypes.AddRange(formStateTypes);
+            context.SaveChanges();
             var personalQuestionInfos = new List<QuestionInfo>() 
             {
                 new QuestionInfo() {

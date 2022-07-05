@@ -15,6 +15,9 @@ namespace QuestionnaireApi.Entities
         public DbSet<QuestionInfo> QuestionInfos { get; set; }
         public DbSet<QuestionInfoType> QuestionInfoTypes { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<FormState> FormStates { get; set; }
+        public DbSet<FormStateType> FormStateTypes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Form>().ToTable("Form");
@@ -22,6 +25,9 @@ namespace QuestionnaireApi.Entities
             modelBuilder.Entity<QuestionInfo>().ToTable("QuestionInfo");
             modelBuilder.Entity<QuestionInfoType>().ToTable("QuestionInfoType");
             modelBuilder.Entity<Country>().ToTable("Country");
+            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<FormState>().ToTable("FormState");
+            modelBuilder.Entity<FormStateType>().ToTable("FormStateType");
         }
     }
 }

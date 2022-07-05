@@ -42,6 +42,7 @@ namespace QuestionnaireApi.Controllers
         [HttpPost("form/{formId}/questions/{questionId}/answer")]
         public async Task<IActionResult> SubmitAnswer([FromBody] Answer answer, int formId, int questionId)
         {
+            answer.FormId = formId;
             answer.QuestionId = questionId;
             string userId = string.Empty;
             if (string.IsNullOrEmpty(answer.UserId))
@@ -62,8 +63,8 @@ namespace QuestionnaireApi.Controllers
 
                 answer.UserId = userId;
             }
-            await _questionnaireAnswerService.AddAnswer(answer);
-            return Ok();
+            var formState = await _questionnaireAnswerService.AddAnswer(answer);
+            return Ok(formState);
         }
     }
 }

@@ -1,8 +1,10 @@
-﻿namespace QuestionnaireApi.Services
+﻿using QuestionnaireApi.Models;
+
+namespace QuestionnaireApi.Services
 {
     public interface IQuestionnaireAnswerService
     {
         Task<IEnumerable<Models.Answer>> GetAllNotes();
-        Task AddAnswer(Models.Answer item);
+        Task<FormState?> AddAnswer(Models.Answer item);
     }
 }

@@ -7,6 +7,8 @@ namespace QuestionnaireApi.Models
     public class Answer
     {
         public string UserId { get; set; } = string.Empty;
+        public int FormId { get;set; }
+        public string Form { get; set; } = string.Empty;
         public int QuestionId { get; set; }
         public string Question { get; set; } = string.Empty;
         public ICollection<AnswerInfo> AnswerInfos { get; set; } = new List<AnswerInfo>();

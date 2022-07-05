@@ -14,19 +14,38 @@ namespace QuestionnaireApi.Services
             _questionnaireService = questionnaireService;
         }
 
-        public async Task AddAnswer(Answer item)
+        public async Task<FormState?> AddAnswer(Answer answer)
         {
-            var question = await _questionnaireService.GetQuestionById(item.QuestionId);
+            var form = await _questionnaireService.GetFormById(answer.FormId);
+            var question = await _questionnaireService.GetQuestionById(answer.QuestionId);
+            var user = await _questionnaireService.GetUserById(answer.UserId);
+            var notPermittedCountries = await _questionnaireService.GetNotPermittedCountries();
+            var notPermittedCountryNames = notPermittedCountries.Select(x => x.Name);
+
             if (question == null)
                 throw new Exception("QuestionId does not exist.");
-            item.Question = question.Title;
-            foreach (var info in item.AnswerInfos)
+
+            if (user == null)
+            {
+                user = await _questionnaireService.InsertUser(answer.UserId);
+            }
+            answer.Form = form.Title;
+            answer.Question = question.Title;
+            var formState = "incomplete";
+
+            foreach (var info in answer.AnswerInfos)
             {
                 var questionInfo = await _questionnaireService.GetQuestionInfoById(info.QuestionInfoId);
                 if (questionInfo != null)
                     info.QuestionInfo = questionInfo.Title;
+                if (questionInfo.Type == "country" && notPermittedCountryNames.Contains(info.Answer))
+                    formState = "completed";
+
             }
-            await _answerRepository.AddAnswer(item);
+
+            var formStateModel = await _questionnaireService.UpdateFormState(form.Id, user.UserId, question.Id, formState);
+            await _answerRepository.AddAnswer(answer);
+            return formStateModel;
         }
 
         public async Task<IEnumerable<Answer>> GetAllNotes()
