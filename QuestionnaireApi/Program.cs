@@ -1,9 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using QuestionnaireApi;
-using QuestionnaireApi.Entities;
-using QuestionnaireApi.Repositories;
-using QuestionnaireApi.Services;
+using Questionaire.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.

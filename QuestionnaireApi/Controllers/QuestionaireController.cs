@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using QuestionnaireApi.Models;
-using QuestionnaireApi.Services;
+using Questionaire.Lib.Models;
+using Questionnaire.Services;
 
 namespace QuestionnaireApi.Controllers
 {

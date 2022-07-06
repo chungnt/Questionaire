@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Questionaire.Entities\Questionaire.Entities.csproj" />
+    <ProjectReference Include="..\Questionaire.Lib\Questionaire.Lib.csproj" />
+    <ProjectReference Include="..\Questionaire.Repositories\Questionaire.Repositories.csproj" />
+    <ProjectReference Include="..\Questionaire.Services\Questionaire.Services.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionnaireApi", "QuestionnaireApi\QuestionnaireApi.csproj", "{ADA68991-CAB1-4A49-B1EE-3B3C4040C0D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionnaireApi", "QuestionnaireApi\QuestionnaireApi.csproj", "{ADA68991-CAB1-4A49-B1EE-3B3C4040C0D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionaire.Repositories", "Questionaire.Repositories\Questionaire.Repositories.csproj", "{D8831B00-5C99-45D6-92EF-6AD61DF3A1C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionaire.Services", "Questionaire.Services\Questionaire.Services.csproj", "{EF18073C-B5F7-4361-B75A-E6D5C5F8B8F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionaire.Lib", "Questionaire.Lib\Questionaire.Lib.csproj", "{71A34CE0-D2E9-47E7-8345-CCB14295C8E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionaire.Entities", "Questionaire.Entities\Questionaire.Entities.csproj", "{1714DA26-F839-4628-93A5-0B95D4D316FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionaire.Config", "Questionaire.Config\Questionaire.Config.csproj", "{DCC64763-8F45-4F2A-B5DB-4A6461DAF6B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{ADA68991-CAB1-4A49-B1EE-3B3C4040C0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADA68991-CAB1-4A49-B1EE-3B3C4040C0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADA68991-CAB1-4A49-B1EE-3B3C4040C0D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8831B00-5C99-45D6-92EF-6AD61DF3A1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8831B00-5C99-45D6-92EF-6AD61DF3A1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8831B00-5C99-45D6-92EF-6AD61DF3A1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8831B00-5C99-45D6-92EF-6AD61DF3A1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF18073C-B5F7-4361-B75A-E6D5C5F8B8F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF18073C-B5F7-4361-B75A-E6D5C5F8B8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF18073C-B5F7-4361-B75A-E6D5C5F8B8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF18073C-B5F7-4361-B75A-E6D5C5F8B8F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71A34CE0-D2E9-47E7-8345-CCB14295C8E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71A34CE0-D2E9-47E7-8345-CCB14295C8E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71A34CE0-D2E9-47E7-8345-CCB14295C8E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71A34CE0-D2E9-47E7-8345-CCB14295C8E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1714DA26-F839-4628-93A5-0B95D4D316FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1714DA26-F839-4628-93A5-0B95D4D316FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1714DA26-F839-4628-93A5-0B95D4D316FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1714DA26-F839-4628-93A5-0B95D4D316FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCC64763-8F45-4F2A-B5DB-4A6461DAF6B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCC64763-8F45-4F2A-B5DB-4A6461DAF6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCC64763-8F45-4F2A-B5DB-4A6461DAF6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCC64763-8F45-4F2A-B5DB-4A6461DAF6B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
