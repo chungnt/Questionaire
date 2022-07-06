@@ -7,7 +7,7 @@ namespace Questionaire.Lib.Models
     {
         public string QuestionInfo { get; set; } = string.Empty;
         [Required]
-        public int QuestionInfoId { get; set; }
+        public int? QuestionInfoId { get; set; }
         [Required]
         public string Answer { get; set; } = string.Empty;
     }

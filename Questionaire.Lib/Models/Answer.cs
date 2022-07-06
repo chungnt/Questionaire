@@ -13,6 +13,7 @@ namespace Questionaire.Lib.Models
         [Required]
         public int QuestionId { get; set; }
         public string Question { get; set; } = string.Empty;
+        [Required]
         public ICollection<AnswerInfo> AnswerInfos { get; set; } = new List<AnswerInfo>();
     }
 }

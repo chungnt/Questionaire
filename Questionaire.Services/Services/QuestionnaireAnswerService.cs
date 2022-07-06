@@ -37,7 +37,7 @@ namespace Questionnaire.Services
 
                 foreach (var info in answer.AnswerInfos)
                 {
-                    var questionInfo = await _questionnaireService.GetQuestionInfoById(info.QuestionInfoId);
+                    var questionInfo = await _questionnaireService.GetQuestionInfoById(info.QuestionInfoId.Value);
                     if (questionInfo != null)
                         info.QuestionInfo = questionInfo.Title;
                     if (questionInfo.Type == "country" && notPermittedCountryNames.Contains(info.Answer))
