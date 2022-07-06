@@ -6,7 +6,6 @@ namespace Questionaire.Lib.Models
     [Serializable]
     public class Answer
     {
-        [Required]
         public string UserId { get; set; } = string.Empty;
         [Required]
         public int FormId { get;set; }

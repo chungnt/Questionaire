@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using Questionaire.Lib;
 using Questionaire.Lib.Models;
 using Questionnaire.Services;
 
@@ -23,7 +24,22 @@ namespace QuestionnaireApi.Controllers
         public async Task<IActionResult> GetForm(int id)
         {
             var form = await _questionnaireService.GetFormById(id);
-            return Ok(form);
+            if (form != null)
+                return Ok(new ApiResponse<Form>()
+                {
+                    Success = true,
+                    Message = "Success.",
+                    Result = form
+                });
+            else
+            {
+                return BadRequest(new ApiResponse<FormState>()
+                {
+                    Success = false,
+                    Message = "An error has occurred when querying form.",
+                    Result = null
+                });
+            }
         }
         [HttpGet("form/{formId}/questions/{questionId}")]
         public async Task<IActionResult> GetFormQuestion(int formId, int questionId)
@@ -32,7 +48,22 @@ namespace QuestionnaireApi.Controllers
             if (form == null)
                 return NotFound();
             var question = await _questionnaireService.GetQuestionById(questionId);
-            return Ok(question);
+            if (question != null)
+                return Ok(new ApiResponse<Question>()
+                {
+                    Success = true,
+                    Message = "Success.",
+                    Result = question
+                });
+            else
+            {
+                return BadRequest(new ApiResponse<FormState>()
+                {
+                    Success = false,
+                    Message = "An error has occurred when querying form question.",
+                    Result = null
+                });
+            }
         }
         [HttpPost("form/{formId}/questions/{questionId}/answer")]
         public async Task<IActionResult> SubmitAnswer([FromBody] Answer answer, int formId, int questionId)
@@ -59,7 +90,22 @@ namespace QuestionnaireApi.Controllers
                 answer.UserId = userId;
             }
             var formState = await _questionnaireAnswerService.AddAnswer(answer);
-            return Ok(formState);
+            if (formState != null)
+                return Ok(new ApiResponse<FormState>() 
+                {
+                    Success = true,
+                    Message = "Answer submitted successfully.",
+                    Result = formState
+                });
+            else
+            {
+                return BadRequest(new ApiResponse<FormState>()
+                {
+                    Success = false,
+                    Message = "An error has occurred when submitting answer.",
+                    Result = null
+                });
+            }
         }
     }
 }

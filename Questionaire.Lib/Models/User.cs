@@ -4,6 +4,7 @@ namespace Questionaire.Lib.Models
 {
     public class User
     {
-        public string UserId { get; set; } = string.Empty;
+        [Required]
+        public string UserId { get; set; } = Guid.NewGuid().ToString();
     }
 }
