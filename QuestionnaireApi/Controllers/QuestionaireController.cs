@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json.Linq;
 using Questionaire.Lib;
 using Questionaire.Lib.Models;
@@ -68,42 +69,64 @@ namespace QuestionnaireApi.Controllers
         [HttpPost("form/{formId}/questions/{questionId}/answer")]
         public async Task<IActionResult> SubmitAnswer([FromBody] Answer answer, int formId, int questionId)
         {
-            answer.FormId = formId;
-            answer.QuestionId = questionId;
-            string userId = string.Empty;
-            if (string.IsNullOrEmpty(answer.UserId))
+            try
             {
-                if (Request.Cookies.ContainsKey("userId"))
+                if (!ModelState.IsValid)
                 {
-                    userId = Request.Cookies["userId"];
-                }
-                //generate random userId for anonymous user
-                string cookieValue = Guid.NewGuid().ToString();
-                Response.Cookies.Append("userId", cookieValue,
-                    new CookieOptions
+                    IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                    return BadRequest(BadRequest(new ApiResponse<IEnumerable<ModelError>>()
                     {
-                        Path = "/",
-                        Expires = DateTime.Now.AddDays(3)
-                    });
-                userId = cookieValue;
-
-                answer.UserId = userId;
-            }
-            var formState = await _questionnaireAnswerService.AddAnswer(answer);
-            if (formState != null)
-                return Ok(new ApiResponse<FormState>() 
+                        Success = false,
+                        Message = "Data invalid.",
+                        Result = allErrors
+                    }));
+                }
+                answer.FormId = formId;
+                answer.QuestionId = questionId;
+                string userId = string.Empty;
+                if (string.IsNullOrEmpty(answer.UserId))
                 {
-                    Success = true,
-                    Message = "Answer submitted successfully.",
-                    Result = formState
-                });
-            else
+                    if (Request.Cookies.ContainsKey("userId"))
+                    {
+                        userId = Request.Cookies["userId"];
+                    }
+                    //generate random userId for anonymous user
+                    string cookieValue = Guid.NewGuid().ToString();
+                    Response.Cookies.Append("userId", cookieValue,
+                        new CookieOptions
+                        {
+                            Path = "/",
+                            Expires = DateTime.Now.AddDays(3)
+                        });
+                    userId = cookieValue;
+
+                    answer.UserId = userId;
+                }
+                var formState = await _questionnaireAnswerService.AddAnswer(answer);
+                if (formState != null)
+                    return Ok(new ApiResponse<FormState>()
+                    {
+                        Success = true,
+                        Message = "Answer submitted successfully.",
+                        Result = formState
+                    });
+                else
+                {
+                    return BadRequest(new ApiResponse<FormState>()
+                    {
+                        Success = false,
+                        Message = "An error has occurred when submitting answer.",
+                        Result = null
+                    });
+                }
+            }
+            catch (Exception ex) 
             {
-                return BadRequest(new ApiResponse<FormState>()
+                return BadRequest(new ApiResponse<string>()
                 {
                     Success = false,
-                    Message = "An error has occurred when submitting answer.",
-                    Result = null
+                    Message = "An exception has occurred.",
+                    Result = ex.Message
                 });
             }
         }
